@@ -3,7 +3,7 @@
  * Plugin Name:       Simple Dashboard Widget
  * Plugin URI:        https://github.com/qriouslad/bw-simple-dashboard-widget
  * Description:       Display a simple dashboard widget
- * Version:           1.1
+ * Version:           1.2
  * Author:            Bowo
  * Author URI:        https://bowo.io
  * License:           GPL-2.0+
@@ -12,16 +12,29 @@
  * Domain Path:       /languages
  */
 
+namespace bw\dashmsg;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit();
 }
 
-function bw_dashboard_message() {
-	echo '<p>Welcome to your plugin!</p>';
+class My_Dashboard
+{
+
+	public function __construct() {
+
+		add_action( 'wp_dashboard_setup', array( $this, 'bw_dashboard_widgets' ) );
+
+	}
+
+	function bw_dashboard_message() {
+		echo '<p>Welcome to your plugin!</p>';
+	}
+
+	public function bw_dashboard_widgets() {
+	wp_add_dashboard_widget( 'personal_welcome_widget', 'Personal Welcome', array( $this, 'bw_dashboard_message' ) );
+	}
+
 }
 
-function bw_dashboard_widgets() {
-	wp_add_dashboard_widget( 'personal_welcome_widget', 'Personal Welcome', 'bw_dashboard_message' );
-}
-
-add_action( 'wp_dashboard_setup', 'bw_dashboard_widgets' );
+$start = new My_Dashboard();
