@@ -18,12 +18,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit();
 }
 
-function bw_dashboard_message() {
-	echo '<p>Welcome to your plugin!</p>';
+class My_Dashboard
+{
+
+	public function __construct() {
+
+		add_action( 'wp_dashboard_setup', array( $this, 'bw_dashboard_widgets' ) );
+
+	}
+
+	function bw_dashboard_message() {
+		echo '<p>Welcome to your plugin!</p>';
+	}
+
+	public function bw_dashboard_widgets() {
+	wp_add_dashboard_widget( 'personal_welcome_widget', 'Personal Welcome', array( $this, 'bw_dashboard_message' ) );
+	}
+
 }
 
-function bw_dashboard_widgets() {
-	wp_add_dashboard_widget( 'personal_welcome_widget', 'Personal Welcome', __NAMESPACE__.'\bw_dashboard_message' );
-}
-
-add_action( 'wp_dashboard_setup', __NAMESPACE__.'\bw_dashboard_widgets' );
+$start = new My_Dashboard();
