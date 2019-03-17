@@ -11,3 +11,17 @@
  * Text Domain:       bw-simple-dashboard-widget
  * Domain Path:       /languages
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit();
+}
+
+function bw_dashboard_message() {
+	echo '<p>Welcome to your plugin!</p>';
+}
+
+function bw_dashboard_widgets() {
+	wp_add_dashboard_widget( 'personal_welcome_widget', 'Personal Welcome', 'bw_dashboard_message' );
+}
+
+add_action( 'wp_dashboard_setup', 'bw_dashboard_widgets' );
