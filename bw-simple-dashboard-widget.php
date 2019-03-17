@@ -12,6 +12,8 @@
  * Domain Path:       /languages
  */
 
+namespace bw\dashmsg;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit();
 }
@@ -21,7 +23,7 @@ function bw_dashboard_message() {
 }
 
 function bw_dashboard_widgets() {
-	wp_add_dashboard_widget( 'personal_welcome_widget', 'Personal Welcome', 'bw_dashboard_message' );
+	wp_add_dashboard_widget( 'personal_welcome_widget', 'Personal Welcome', __NAMESPACE__.'\bw_dashboard_message' );
 }
 
-add_action( 'wp_dashboard_setup', 'bw_dashboard_widgets' );
+add_action( 'wp_dashboard_setup', __NAMESPACE__.'\bw_dashboard_widgets' );
