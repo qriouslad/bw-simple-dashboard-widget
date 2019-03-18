@@ -4,6 +4,6 @@ This is a simple WordPress plugin that displays a dashboard widget with static H
 
 ## Screenshots
 
-![Dashboard widget appearance](/assets/screenshot-1.png)
+![Dashboard widget appearance](assets/screenshot-1.png)
 
-![Dashboard widget settings for title and content](/assets/screenshot-2.png)
+![Dashboard widget settings for title and content](assets/screenshot-2.png)
