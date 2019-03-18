@@ -156,7 +156,8 @@ class Bw_Simple_Dashboard_Widget {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'bw_dashboard_widgets');
+		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'bw_custom_dash_widget');
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'bw_custom_dash_widget_settings' );
 
 	}
 
