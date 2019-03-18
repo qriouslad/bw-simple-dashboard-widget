@@ -22,7 +22,32 @@
 				Custom Dashboard Widget
 			</th>
 			<td>
-				Options to go here...
+				<?php
+
+				$title = get_option('bw_cdw_title');
+
+				?>
+
+				<input type="text" name="bw_cdw_title" value="<?php echo isset( $title ) ? esc_attr( $title ) : '' ?>">
+				<p class="description">Title of the widget</p>
+				<p>&nbsp;</p>
+
+				<?php
+
+				$content = get_option('bw_cdw_content');
+
+				$args = array(
+					'wpautop' => false,
+				    'textarea_rows' => 15,
+				    // 'teeny' => true,
+				    // 'quicktags' => false,
+				);
+
+				wp_editor( $content, 'bw_cdw_content', $args );
+
+				?>
+				<p class="description">Content of the widget</p>
+
 			</td>
 		</tr>
 	</tbody>
