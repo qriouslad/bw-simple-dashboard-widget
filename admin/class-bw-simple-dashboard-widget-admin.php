@@ -101,6 +101,25 @@ class Bw_Simple_Dashboard_Widget_Admin {
 	}
 
 	/**
+	 * Add settings section at the bottom of Settings >> General page
+	 */
+
+	public function bw_dashboard_widget_settings() {
+
+		add_settings_section( 'bw_dash_widget_welcome', '', array( $this, 'bw_dashboard_widget_settings_callback'), 'general' );
+
+	}
+
+	/**
+	* Display options form for the settings section
+	*/
+	public function bw_dashboard_widget_settings_callback() {
+
+		include 'partials/bw-simple-dashboard-widget-admin-settings.php';
+
+	}
+
+	/**
 	 * Add a dashboard widget that calls the function displaying te welcome message
 	 */
 
