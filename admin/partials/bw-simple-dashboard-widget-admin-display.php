@@ -15,4 +15,10 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 
-<p>Welcome to your admin dashboard!</p>
+<?php
+
+$content = get_option('bw_cdw_content');
+
+echo $content;
+
+?>

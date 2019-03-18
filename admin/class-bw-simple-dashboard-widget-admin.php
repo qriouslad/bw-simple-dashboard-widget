@@ -104,16 +104,36 @@ class Bw_Simple_Dashboard_Widget_Admin {
 	 * Add settings section at the bottom of Settings >> General page
 	 */
 
-	public function bw_dashboard_widget_settings() {
+	public function bw_custom_dash_widget_settings() {
 
-		add_settings_section( 'bw_dash_widget_welcome', '', array( $this, 'bw_dashboard_widget_settings_callback'), 'general' );
+		register_setting( 'general', 'bw_cdw_title' );
+		register_setting( 'general', 'bw_cdw_content' );
+
+		add_settings_section( 
+			'bw_cdw_settings', 
+			'', 
+			array( $this, 'bw_cdw_settings_view'), 
+			'general' 
+		);
+
+//		add_settings_field(
+//			'bw_cdw_content_editor',
+//			'',
+//			array( $this, 'bw_cdw_content_callback' ),
+//			'general',
+//			'bw_cdw_settings'
+//		);
 
 	}
+
+//		function bw_cdw_content_callback() {
+//		}
+
 
 	/**
 	* Display options form for the settings section
 	*/
-	public function bw_dashboard_widget_settings_callback() {
+	public function bw_cdw_settings_view() {
 
 		include 'partials/bw-simple-dashboard-widget-admin-settings.php';
 
@@ -123,9 +143,11 @@ class Bw_Simple_Dashboard_Widget_Admin {
 	 * Add a dashboard widget that calls the function displaying te welcome message
 	 */
 
-	public function bw_dashboard_widgets() {
+	public function bw_custom_dash_widget() {
+
+		$title = get_option('bw_cdw_title');
 		
-		wp_add_dashboard_widget( 'personal_welcome_widget', 'Welcome', array( $this, 'bw_dashboard_message' ) );
+		wp_add_dashboard_widget( 'custom_dash_widget', $title, array( $this, 'bw_custom_dash_widget_content' ) );
 	
 	}
 
@@ -134,7 +156,7 @@ class Bw_Simple_Dashboard_Widget_Admin {
 	 * Output the HTML message for the dashboard widget
 	 */
 
-	public function bw_dashboard_message() {
+	public function bw_custom_dash_widget_content() {
 		
 		include 'partials/bw-simple-dashboard-widget-admin-display.php';
 	
