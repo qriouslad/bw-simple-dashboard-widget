@@ -101,39 +101,96 @@ class Bw_Simple_Dashboard_Widget_Admin {
 	}
 
 	/**
+	 * Add settings as sub-menu of Settings menu
+	 */
+
+	public function bw_custom_dash_widget_page() {
+
+		add_options_page( 
+			'Custom Dashboard Widget Settings', 
+			'Dashboard Widget', 
+			'manage_options', 
+			'cdw_settings', 
+			array( $this, 'bw_cdw_settings_html' )
+		);
+
+	}
+
+	/**
 	 * Add settings section at the bottom of Settings >> General page
 	 */
 
 	public function bw_custom_dash_widget_settings() {
 
-		register_setting( 'general', 'bw_cdw_title' );
-		register_setting( 'general', 'bw_cdw_content' );
+		register_setting( 'bw_cdw', 'bw_cdw_title' );
+		register_setting( 'bw_cdw', 'bw_cdw_content' );
 
+		// Add settings at the bottom of Settings >> General page
 		add_settings_section( 
-			'bw_cdw_settings', 
-			'', 
-			array( $this, 'bw_cdw_settings_view'), 
-			'general' 
+			'bw_cdw_settings_section', 
+			'Custom Dashboard Widget', 
+			array( $this, 'bw_cdw_settings_section_cb'), 
+			'bw_cdw' 
 		);
 
-//		add_settings_field(
-//			'bw_cdw_content_editor',
-//			'',
-//			array( $this, 'bw_cdw_content_callback' ),
-//			'general',
-//			'bw_cdw_settings'
-//		);
+		// Add settings field for widget title
+		add_settings_field(
+			'cdw_field_title',
+			'Widget Title',
+			array( $this, 'bw_cdw_field_title_cb'),
+			'bw_cdw',
+			'bw_cdw_settings_section'
+		);
+
+		// Add settings field for widget content
+		add_settings_field(
+			'cdw_field_content',
+			'Widget Content',
+			array( $this, 'bw_cdw_field_content_cb'),
+			'bw_cdw',
+			'bw_cdw_settings_section'
+		);
 
 	}
 
-//		function bw_cdw_content_callback() {
-//		}
+	public function bw_cdw_settings_section_cb() {
 
+		echo '<p>Input the title and content for the widget below.</p>';
+
+	}
+
+	public function bw_cdw_field_title_cb() {
+
+		$title = get_option('bw_cdw_title');
+
+		echo '<input type="text" name="bw_cdw_title" value="'.esc_attr( $title ).'"';
+		
+	}
+
+	public function bw_cdw_field_content_cb() {
+		
+		$content = get_option('bw_cdw_content');
+
+		$args = array(
+			'wpautop' => false,
+		    'textarea_rows' => 20,
+		    // 'teeny' => true,
+		    // 'quicktags' => false,
+		);
+
+		wp_editor( $content, 'bw_cdw_content', $args );
+
+	}
 
 	/**
 	* Display options form for the settings section
 	*/
-	public function bw_cdw_settings_view() {
+	public function bw_cdw_settings_html() {
+
+		// Check user capabilities
+		if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+		}
 
 		include 'partials/bw-simple-dashboard-widget-admin-settings.php';
 

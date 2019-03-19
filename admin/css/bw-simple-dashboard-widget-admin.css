@@ -19,5 +19,12 @@
 
 #custom_dash_widget ul {
 	list-style: disc;
-	padding-left: 18px;
+	padding-left: 28px;
+}
+
+.dash-widget-options input[type=text] {
+	width: 100%;
+	padding: 8px 10px;
+	font-size: 16px;
+	margin-bottom: 1.5em;
 }
