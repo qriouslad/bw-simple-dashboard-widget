@@ -16,7 +16,7 @@
  * Plugin Name:       Simple Dashboard Widget
  * Plugin URI:        https://github.com/qriouslad/bw-simple-dashboard-widget
  * Description:       Display a simple dashboard widget showing static HTML content.
- * Version:           2.1
+ * Version:           2.2
  * Author:            Bowo
  * Author URI:        https://bowo.io
  * License:           GPL-2.0+
