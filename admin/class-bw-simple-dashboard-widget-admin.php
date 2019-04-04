@@ -117,7 +117,7 @@ class Bw_Simple_Dashboard_Widget_Admin {
 	}
 
 	/**
-	 * Add settings section at the bottom of Settings >> General page
+	 * Register settings section, options, fields
 	 */
 
 	public function bw_custom_dash_widget_settings() {
@@ -125,7 +125,7 @@ class Bw_Simple_Dashboard_Widget_Admin {
 		register_setting( 'bw_cdw', 'bw_cdw_title' );
 		register_setting( 'bw_cdw', 'bw_cdw_content' );
 
-		// Add settings at the bottom of Settings >> General page
+		// Add settings section
 		add_settings_section( 
 			'bw_cdw_settings_section', 
 			'Custom Dashboard Widget', 
@@ -163,7 +163,7 @@ class Bw_Simple_Dashboard_Widget_Admin {
 
 		$title = get_option('bw_cdw_title');
 
-		echo '<input type="text" name="bw_cdw_title" value="'.esc_attr( $title ).'"';
+		echo '<input type="text" name="bw_cdw_title" value="'.esc_attr( $title ).'">';
 		
 	}
 
